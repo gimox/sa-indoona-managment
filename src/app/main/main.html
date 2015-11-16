@@ -1,28 +1,43 @@
 <md-toolbar>
     <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings">
-            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-        </md-button>
-        <h2>
             <img src="assets/images/logo_w.svg" style="height: 26px;">
-
-        </h2>
         <span flex></span>
-        <md-button class="md-icon-button" aria-label="Favorite">
-            <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="More">
-            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-        </md-button>
     </div>
 </md-toolbar>
 
 <div layout="vertical" layout-fill>
 
     <md-content layout-padding>
-        ciao<br/>
-        Seleziona i canali che vuoi seguire:
-        <br/>
+
+      <div layout="column" layout-align="center center">
+        <h1>Ciao {{user.name}}</h1>
+        <p>Seleziona i canali dai quali vuoi ricevere gli aggiornamenti</p>
+      </div>
+
+      <md-divider></md-divider>
+
+      <md-list>
+        <md-list-item ng-repeat="contact in contacts">
+          <img alt="{{ contact.name }}" ng-src="{{ contact.avatar_url }}" class="md-avatar" />
+          <p>{{ contact.name }}</p>
+          <md-progress-circular md-mode="{{contact.progress}}" md-diameter="20px"></md-progress-circular>
+          <md-button class="md-raised md-primary"
+                      ng-click="mainCtrl.follow(contact)"
+                      ng-disabled="contact.disabled"
+                      ng-if="!contact.selected">
+            <md-icon aria-label="Follow contact">add</md-icon>
+              Segui
+          </md-button>
+          <md-button class="md-raised md-warn"
+                      ng-click="mainCtrl.unfollow(contact)"
+                      ng-disabled="contact.disabled"
+                      ng-if="contact.selected">
+            <md-icon aria-label="Follow contact">remove</md-icon>
+              Rimuovi
+          </md-button>
+        </md-list-item>
+      </md-list>
     </md-content>
+
 
 </div>

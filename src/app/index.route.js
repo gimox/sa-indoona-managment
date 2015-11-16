@@ -9,13 +9,12 @@
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
-        url: '/:user_id',
+        url: '/',
         templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'mainCtrl'
+        controller: 'MainController as MainCtrl'
       });
 
-    $urlRouterProvider.otherwise('/:user_id');
+    $urlRouterProvider.otherwise('/');
   }
 
 })();

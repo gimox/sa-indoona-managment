@@ -5,33 +5,31 @@
     </div>
 </md-toolbar>
 
-<div layout="vertical" layout-fill>
-
     <md-content layout-padding>
 
       <div layout="column" layout-align="center center">
-        <h1>Ciao {{user.name}}</h1>
-        <p>Seleziona i canali dai quali vuoi ricevere gli aggiornamenti</p>
+        <h1>Ciao {{MainCtrl.user.profile.name }}</h1>
+        <p>Gestisci i tuoi canali:</p>
       </div>
 
       <md-divider></md-divider>
 
-      <md-list>
+      <md-list layout-padding>
         <md-list-item ng-repeat="contact in contacts">
           <img alt="{{ contact.name }}" ng-src="{{ contact.avatar_url }}" class="md-avatar" />
           <p>{{ contact.name }}</p>
           <md-progress-circular md-mode="{{contact.progress}}" md-diameter="20px"></md-progress-circular>
           <md-button class="md-raised md-primary"
-                      ng-click="mainCtrl.follow(contact)"
+                      ng-click="MainCtrl.follow(contact)"
                       ng-disabled="contact.disabled"
-                      ng-if="!contact.selected">
+                      ng-hide="contact.selected">
             <md-icon aria-label="Follow contact">add</md-icon>
               Segui
           </md-button>
           <md-button class="md-raised md-warn"
-                      ng-click="mainCtrl.unfollow(contact)"
+                      ng-click="MainCtrl.unfollow(contact)"
                       ng-disabled="contact.disabled"
-                      ng-if="contact.selected">
+                      ng-show="contact.selected">
             <md-icon aria-label="Follow contact">remove</md-icon>
               Rimuovi
           </md-button>
@@ -40,4 +38,4 @@
     </md-content>
 
 
-</div>
+

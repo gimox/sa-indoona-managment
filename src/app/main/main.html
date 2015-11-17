@@ -8,7 +8,7 @@
     <md-content layout-padding>
 
       <div layout="column" layout-align="center center">
-        <h1>Ciao {{MainCtrl.user.profile.name }}</h1>
+        <h2>Ciao {{MainCtrl.user.profile.name }}</h2>
         <p>Gestisci i tuoi canali:</p>
       </div>
 
@@ -17,16 +17,19 @@
       <md-list layout-padding>
         <md-list-item ng-repeat="contact in contacts">
           <img alt="{{ contact.name }}" ng-src="{{ contact.avatar_url }}" class="md-avatar" />
-          <p>{{ contact.name }}</p>
-          <md-progress-circular md-mode="{{contact.progress}}" md-diameter="20px"></md-progress-circular>
-          <md-button class="md-raised md-primary"
+          <p flex="40">{{ contact.name }}</p>
+          <md-progress-circular md-mode="{{contact.progress}}"
+                                md-diameter="20px"
+                                ></md-progress-circular>
+          <md-button class="md-primary"
                       ng-click="MainCtrl.follow(contact)"
                       ng-disabled="contact.disabled"
-                      ng-hide="contact.selected">
-            <md-icon aria-label="Follow contact">add</md-icon>
+                      ng-hide="contact.selected"
+                      flex="5">
+            <md-icon aria-label="Follow contact" style="color:#37474F">add</md-icon>
               Segui
           </md-button>
-          <md-button class="md-raised md-warn"
+          <md-button class="md-warn"
                       ng-click="MainCtrl.unfollow(contact)"
                       ng-disabled="contact.disabled"
                       ng-show="contact.selected">
@@ -36,6 +39,3 @@
         </md-list-item>
       </md-list>
     </md-content>
-
-
-

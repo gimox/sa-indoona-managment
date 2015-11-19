@@ -9,8 +9,7 @@ function MainController($log, $scope, ClientFactory) {
 
     var self = this;
 
-
-
+/*
     var user = {
         ownerId     : '564621adc70aa44e6d481e99',
         state       : '564621adc70aa44e6d481e99_563792935901714a649f1208,563cb93f5901714a649f1214',
@@ -45,6 +44,7 @@ function MainController($log, $scope, ClientFactory) {
             "selected"  : true
         }
     ];
+*/
 
 
     $scope.contacts = [];

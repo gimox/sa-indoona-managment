@@ -1,13 +1,13 @@
 <md-toolbar>
     <div class="md-toolbar-tools">
-            <img src="assets/images/logo_w.svg" style="height: 26px;">
+            <img src="assets/images/logofull_w.svg" style="height: 26px;">
         <span flex></span>
     </div>
 </md-toolbar>
 
-    <md-content layout-padding>
+    <md-content layout-padding class="back-main">
 
-      <div layout="column" layout-align="center center">
+      <div layout="column" layout-align="center center" style="background-color: #FFF;">
         <h2>Ciao {{MainCtrl.user.profile.name }}</h2>
         <p>Gestisci i tuoi canali:</p>
       </div>
@@ -17,15 +17,14 @@
       <md-list layout-padding>
         <md-list-item ng-repeat="contact in contacts">
           <img alt="{{ contact.name }}" ng-src="{{ contact.avatar_url }}" class="md-avatar" />
-          <p flex="40">{{ contact.name }}</p>
+          <h5>{{ contact.name }}</h5>
           <md-progress-circular md-mode="{{contact.progress}}"
                                 md-diameter="20px"
                                 ></md-progress-circular>
           <md-button class="md-primary"
                       ng-click="MainCtrl.follow(contact)"
                       ng-disabled="contact.disabled"
-                      ng-hide="contact.selected"
-                      flex="5">
+                      ng-hide="contact.selected">
             <md-icon aria-label="Follow contact" style="color:#37474F">add</md-icon>
               Segui
           </md-button>
@@ -33,7 +32,7 @@
                       ng-click="MainCtrl.unfollow(contact)"
                       ng-disabled="contact.disabled"
                       ng-show="contact.selected">
-            <md-icon aria-label="Follow contact">remove</md-icon>
+            <md-icon aria-label="Follow contact" ">remove</md-icon>
               Rimuovi
           </md-button>
         </md-list-item>

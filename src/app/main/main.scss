@@ -1,5 +1,9 @@
+$button-main-primary: #37474F;
+$avatar-border: #37474F; //#90D0DB
+
+
 h2{
-  margin: 0px;
+  margin: 0;
   margin-top: 5px;
 }
 p{
@@ -10,19 +14,26 @@ md-list-item p{
   font-size: 12px;
 }
 .md-button {
-  min-width: 100px;
+  min-width: 90px;
   min-height: 15px;
   line-height: 15px;
   font-size: 10px;
+  font-weight: bold;
 }
 .md-button.md-warn{
   border:2px solid #F44336;
 }
 .md-button.md-primary{
-  border:2px solid #37474F;
-  color: #37474F;
+  border:2px solid $button-main-primary;
+  color: $button-main-primary;
 }
 
 .md-avatar {
-  border:2px solid #90D0DB;
+  border:2px solid $avatar-border;
+}
+
+$background : "/assets/images/background.jpg";
+
+.back-main{
+  background: transparent;
 }

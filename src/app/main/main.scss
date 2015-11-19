@@ -19,13 +19,16 @@ md-list-item p{
   line-height: 15px;
   font-size: 10px;
   font-weight: bold;
+  background-color: #FFF;
 }
 .md-button.md-warn{
   border:2px solid #F44336;
+  background-color: #FFF;
 }
 .md-button.md-primary{
   border:2px solid $button-main-primary;
   color: $button-main-primary;
+  background-color: #FFF;
 }
 
 .md-avatar {

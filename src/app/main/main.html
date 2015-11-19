@@ -1,4 +1,4 @@
-<md-toolbar>
+<md-toolbar style="position: fixed;">
     <div class="md-toolbar-tools">
             <img src="assets/images/logofull_w.svg" style="height: 26px;">
         <span flex></span>
@@ -7,7 +7,7 @@
 
     <md-content layout-padding class="back-main">
 
-      <div layout="column" layout-align="center center" style="background-color: #FFF;">
+      <div layout="column" layout-align="center center" style="background-color: #FFF;padding-top:50px;">
         <h2>Ciao {{MainCtrl.user.profile.name }}</h2>
         <p>Gestisci i tuoi canali:</p>
       </div>
@@ -17,7 +17,7 @@
       <md-list layout-padding>
         <md-list-item ng-repeat="contact in contacts">
           <img alt="{{ contact.name }}" ng-src="{{ contact.avatar_url }}" class="md-avatar" />
-          <h5>{{ contact.name }}</h5>
+          <p>{{ contact.name }}</p>
           <md-progress-circular md-mode="{{contact.progress}}"
                                 md-diameter="20px"
                                 ></md-progress-circular>

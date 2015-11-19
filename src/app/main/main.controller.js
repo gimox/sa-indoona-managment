@@ -42,6 +42,34 @@ function MainController($log, $scope, ClientFactory) {
             "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
             "contact_id": 1,
             "selected"  : true
+        },
+        {
+            "name"      : "Canale Demo",
+            "id"        : "563cb93f5901714a649f1214",
+            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id": 2,
+            "selected"  : true
+        },
+        {
+            "name"      : "Senderalert Info generiche",
+            "id"        : "563792935901714a649f1208",
+            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id": 1,
+            "selected"  : true
+        },
+        {
+            "name"      : "Canale Demo",
+            "id"        : "563cb93f5901714a649f1214",
+            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id": 2,
+            "selected"  : true
+        },
+        {
+            "name"      : "Senderalert Info generiche",
+            "id"        : "563792935901714a649f1208",
+            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id": 1,
+            "selected"  : true
         }
     ];
 */

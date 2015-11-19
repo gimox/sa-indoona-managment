@@ -32,8 +32,8 @@ md-list-item p{
   border:2px solid $avatar-border;
 }
 
-$background : "/assets/images/background.jpg";
-
-.back-main{
-  background: transparent;
+.back-main {
+  background: #fcfcfc url("/assets/images/background.jpg") repeat center center;
+  height: 100%;
+  min-height: 100%;
 }

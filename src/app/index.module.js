@@ -10,7 +10,8 @@
         'ngMessages',
         'ngAria',
         'ui.router',
-        'ngMaterial'
+        'ngMaterial',
+        'ngFx'
       ]);
 
 })();

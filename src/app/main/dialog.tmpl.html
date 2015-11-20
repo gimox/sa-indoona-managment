@@ -1,0 +1,44 @@
+<md-dialog aria-label="Scheda" ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Scheda</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content >
+            <div class="md-dialog-content">
+
+                <div style="width: 100%;text-align: center">
+                    <img alt="{{ contact.name }}" ng-src="{{ contact.avatar_url }}" class="card-img"/>
+
+                    <h2>{{contact.name}}</h2>
+                </div>
+                <p>{{contact.description}}</p>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+
+            <md-button ng-click="answer(contact.selected)">
+                <span ng-show="contact.selected">
+                     <md-icon>delete</md-icon> rimuovi</span>
+
+                <span ng-show="!contact.selected">
+                     <md-icon>add</md-icon>segui
+                </span>
+            </md-button>
+
+            <md-button ng-click="cancel()" style="margin-right:20px;">
+                chiudi
+
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

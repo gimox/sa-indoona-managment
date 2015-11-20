@@ -2,7 +2,6 @@
     angular.module('saIndoonaFront')
         .factory('ClientFactory', function ($http, $log, API_URL) {
 
-
             function followContact(params) {
                 return $http.post(API_URL + '/management/addContacts', params)
                     .then(function (response) {

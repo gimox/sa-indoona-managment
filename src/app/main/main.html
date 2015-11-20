@@ -1,40 +1,47 @@
-<md-toolbar style="position: fixed;">
+<md-toolbar
+        class="md-whiteframe-z2"
+        md-scroll-shrink
+        style="position: fixed">
     <div class="md-toolbar-tools">
-            <img src="assets/images/logofull_w.svg" style="height: 26px;">
-        <span flex></span>
+        <img src="assets/images/logofull_w.svg" style="height: 60%;">
     </div>
 </md-toolbar>
 
-    <md-content layout-padding class="back-main">
+<md-progress-linear class="md-warn progress" md-mode="{{progress}}"></md-progress-linear>
 
-      <div layout="column" layout-align="center center" style="background-color: #FFF;padding-top:50px;">
-        <h2>Ciao {{MainCtrl.user.profile.name }}</h2>
-        <p>Gestisci i tuoi canali:</p>
-      </div>
 
-      <md-divider></md-divider>
+<md-content flex class="back-main">
 
-      <md-list layout-padding>
-        <md-list-item ng-repeat="contact in contacts">
-          <img alt="{{ contact.name }}" ng-src="{{ contact.avatar_url }}" class="md-avatar" />
-          <p>{{ contact.name }}</p>
-          <md-progress-circular md-mode="{{contact.progress}}"
-                                md-diameter="20px"
-                                ></md-progress-circular>
-          <md-button class="md-primary"
-                      ng-click="MainCtrl.follow(contact)"
-                      ng-disabled="contact.disabled"
-                      ng-hide="contact.selected">
-            <md-icon aria-label="Follow contact" style="color:#37474F">add</md-icon>
-              Segui
-          </md-button>
-          <md-button class="md-warn"
-                      ng-click="MainCtrl.unfollow(contact)"
-                      ng-disabled="contact.disabled"
-                      ng-show="contact.selected">
-            <md-icon aria-label="Follow contact" ">remove</md-icon>
-              Rimuovi
-          </md-button>
+    <md-list style="padding-bottom:50px; margin-top:80px;">
+
+        <md-card style="margin-top:30px;">
+            <md-card-content layout-align="center center center">
+                <h2 class="md-title">Ciao {{MainCtrl.user.profile.name }}</h2>
+
+                <p>Gestisci i tuoi canali</p>
+            </md-card-content>
+        </md-card>
+
+
+        <md-list-item class="md-1-line"
+                      layout="row"
+                      ng-repeat="contact in contacts"
+                      ng-click="MainCtrl.info(contact,$event)">
+            <img alt="{{ contact.name }}" ng-src="{{ contact.avatar_url }}" class="md-avatar"/>
+
+            <div class="md-list-item-text" layout="column" flex="65">
+                <p>{{ contact.name }}</p>
+            </div>
+
+            <md-button class="md-fab md-mini md-secondary"
+                       ng-class="MainCtrl.getIconClass(contact.selected)"
+                       ng-click="MainCtrl.setAction(contact)"
+                       ng-disabled="contact.disabled">
+
+                <md-icon>{{MainCtrl.getIcon(contact.selected)}}</md-icon>
+
+            </md-button>
+
         </md-list-item>
-      </md-list>
-    </md-content>
+    </md-list>
+</md-content>

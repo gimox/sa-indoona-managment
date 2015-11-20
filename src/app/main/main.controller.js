@@ -5,130 +5,170 @@ angular
     .controller('MainController', MainController);
 
 /** @ngInject */
-function MainController($log, $scope, ClientFactory) {
+function MainController($log, $scope, ClientFactory, $mdDialog) {
 
     var self = this;
-
 /*
     var user = {
-        ownerId     : '564621adc70aa44e6d481e99',
-        state       : '564621adc70aa44e6d481e99_563792935901714a649f1208,563cb93f5901714a649f1214',
-        code        : '6265c41f203ded70b75f8ba063f39c4e70f9809d',
+        ownerId     : '1',
+        state       : '2,563cb93f5901714a649f1214',
+        code        : '3',
         profile     : {lang: 'it', surname: 'Modoni', name: 'Giorgio'},
         registration: {
-            user_id      : 'am0zho0aa9xyf5a41695l4h6r',
-            refresh_token: 'e7af3ad1a3c13516a8482e5f033e65467b3c4ef5',
+            user_id      : '1',
+            refresh_token: '2',
             scope        : 'basic',
             token_type   : 'Bearer',
             expires_in   : 360000,
-            access_token : '5ceaf896c6bb537b2a5dce6e86ebd1625b66c036'
+            access_token : '3'
         },
         channelId   : ['563792935901714a649f1208', '563cb93f5901714a649f1214'],
-        id          : '564a2e785901714a649f1230'
+        id          : '2'
     };
-
 
     var contacts = [
         {
-            "name"      : "Canale Demo",
-            "id"        : "563cb93f5901714a649f1214",
-            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
-            "contact_id": 2,
-            "selected"  : true
+            "name"       : "Comune di Ussaramanna",
+            "id"         : "563cb93f5901714a649f1214",
+            "avatar_url" : "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id" : 2,
+            "selected"   : true,
+            "description": "Rimani on contatto con la nostra amministrazione, ricevi informazioni sui bandi, allerte meteo, eventi e iniziative intorno a te."
         },
         {
-            "name"      : "Senderalert Info generiche",
-            "id"        : "563792935901714a649f1208",
-            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
-            "contact_id": 1,
-            "selected"  : true
+            "name"       : "Senderalert Info generiche",
+            "id"         : "563792935901714a649f1208",
+            "avatar_url" : "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id" : 1,
+            "selected"   : true,
+            "description": "Rimani on contatto con la nostra amministrazione, ricevi informazioni sui bandi, allerte meteo, eventi e iniziative intorno a te."
         },
         {
-            "name"      : "Canale Demo",
-            "id"        : "563cb93f5901714a649f1214",
-            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
-            "contact_id": 2,
-            "selected"  : true
+            "name"       : "Canale Demo",
+            "id"         : "563cb93f5901714a649f1214",
+            "avatar_url" : "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id" : 2,
+            "selected"   : false,
+            "description": "Rimani on contatto con la nostra amministrazione, ricevi informazioni sui bandi, allerte meteo, eventi e iniziative intorno a te."
         },
         {
-            "name"      : "Senderalert Info generiche",
-            "id"        : "563792935901714a649f1208",
-            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
-            "contact_id": 1,
-            "selected"  : true
+            "name"       : "Senderalert Info generiche",
+            "id"         : "563792935901714a649f1208",
+            "avatar_url" : "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id" : 1,
+            "selected"   : false,
+            "description": "Rimani on contatto con la nostra amministrazione, ricevi informazioni sui bandi, allerte meteo, eventi e iniziative intorno a te."
         },
         {
-            "name"      : "Canale Demo",
-            "id"        : "563cb93f5901714a649f1214",
-            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
-            "contact_id": 2,
-            "selected"  : true
+            "name"       : "Canale Demo",
+            "id"         : "563cb93f5901714a649f1214",
+            "avatar_url" : "http://indoona.senderalert.eu/images/ussaramanna.jpg",
+            "contact_id" : 2,
+            "selected"   : true,
+            "description": "Rimani on contatto con la nostra amministrazione, ricevi informazioni sui bandi, allerte meteo, eventi e iniziative intorno a te."
         },
         {
-            "name"      : "Senderalert Info generiche",
-            "id"        : "563792935901714a649f1208",
-            "avatar_url": "http://indoona.senderalert.eu/logo1.jpg",
-            "contact_id": 1,
-            "selected"  : true
+            "name"       : "Senderalert Info generiche",
+            "id"         : "563792935901714a649f1208",
+            "avatar_url" : "http://indoona.senderalert.eu/logo1.jpg",
+            "contact_id" : 1,
+            "selected"   : true,
+            "description": "Rimani on contatto con la nostra amministrazione, ricevi informazioni sui bandi, allerte meteo, eventi e iniziative intorno a te."
         }
     ];
 */
 
-
     $scope.contacts = [];
     $scope.contacts = contacts;
+    $scope.progress = false;
 
     self.user = user;
 
-    self.follow = function (contact) {
-        $log.log(contact);
-        contact.progress = 'indeterminate';
+    self.setAction = function (contact) {
+        $scope.progress = 'indeterminate';
         contact.disabled = true;
 
-        ClientFactory.followContact({
-            clientId : user.id,
-            channelId: contact.id
-        }).then(onSuccess, onError);
+        if (contact.selected) {
 
-        function onSuccess(response) {
-            console.log(response);
-            contact.progress = '';
-            contact.selected = true;
-            contact.disabled = false;
+            ClientFactory.unfollowContact({
+                clientId : user.id,
+                channelId: contact.id
+            }).then(function (success) {
+                $scope.progress = '';
+                contact.disabled = false;
+                contact.selected = false;
+            }, onError);
+
+        } else {
+
+            ClientFactory.followContact({
+                clientId : user.id,
+                channelId: contact.id
+            }).then(function (success) {
+                $scope.progress = '';
+                contact.disabled = false;
+                contact.selected = true;
+            }, onError);
+
         }
 
-        function onError(error) {
-            contact.progress = '';
+        function onError(err) {
+            $log.error(err);
+            $scope.progress = '';
             contact.disabled = false;
-
-            $log.error(error);
         }
 
     };
 
-    self.unfollow = function (contact) {
-        $log.log(contact);
-        contact.progress = 'indeterminate';
-        contact.disabled = true;
 
-        ClientFactory.unfollowContact({
-            clientId : user.id,
-            channelId: contact.id
-        }).then(onSuccess, onError);
+    /**
+     * @description
+     * return icon for repeat
+     *
+     * @param selected
+     * @returns {string}
+     */
+    self.getIcon = function (selected) {
+        return selected ? 'delete' : 'add';
+    };
 
-        function onSuccess(response) {
-            console.log(response);
-            contact.progress = '';
-            contact.selected = false;
-            contact.disabled = false;
-        }
+    self.getIconClass = function (selected) {
+        return selected ? 'md-warn' : 'md-primary';
+    };
 
-        function onError(error) {
-            contact.progress = '';
-            contact.disabled = false;
 
-            $log.error(error);
-        }
+    self.info = function (contact, ev) {
+        $mdDialog.show({
+                controller         : DialogController,
+                templateUrl: 'app/main/dialog.tmpl.html',
+                parent     : angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals             : {
+                    contact: contact
+                }
+            })
+            .then(function (answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                self.setAction(contact);
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
     }
+}
 
+function DialogController($scope, $mdDialog, contact) {
+    $scope.hide = function () {
+        $mdDialog.hide();
+    };
+
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+    };
+
+    $scope.answer = function (answer) {
+        $mdDialog.hide(answer);
+    };
+
+    $scope.contact = contact;
 }

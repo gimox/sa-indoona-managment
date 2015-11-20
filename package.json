@@ -1,7 +1,9 @@
 {
   "name": "saIndoonaFront",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "ng-fx": "^2.0.4"
+  },
   "scripts": {
     "test": "gulp test"
   },
